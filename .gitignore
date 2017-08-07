@@ -88,3 +88,26 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Windows thumbnail db
+Thumbs.db
+
+# OSX files
+.DS_Store
+
+# Eclipse project files
+.classpath
+.project
+
+# Android Studio
+*.iml
+.idea
+idea/
+#.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
+.gradle
+build/
+
+#NDK
+obj/
+.idea/copyright/profiles_settings.xml
+.idea/compiler.xml

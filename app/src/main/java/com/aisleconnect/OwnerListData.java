@@ -7,5 +7,5 @@ package com.aisleconnect;
 public class OwnerListData {
     public String Name;
     public int Number;
-
+    public String imgURL;
 }
