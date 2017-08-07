@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -117,9 +118,9 @@ public class MainActivity extends AppCompatActivity {
         public void run(){
             // 運行網路連線的程式
             JSONObject r = sendPostDataToInternet(LoginURL);
-            if (r != null)
+            if (r != null) {
                 ToOwnerList(r);
-            else{
+            }else{
                 MainActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -140,7 +141,24 @@ public class MainActivity extends AppCompatActivity {
         }
     };
     private void ToOwnerList(JSONObject owner){
-        //// TODO: 2017/8/7  
+
+        try{
+            JSONArray dataarray = owner.getJSONArray("data");
+            for (int cn =0;cn<dataarray.length();cn++){
+                JSONObject childobj =  dataarray.getJSONObject(cn);
+                Log.e("ownerlist","count "+cn +"    "+childobj.toString());
+                String childname = childobj.getString("name");
+                int childindex = childobj.getInt("id");
+                String imgUrl = childobj.getString("imageUrl");
+                OwnerListData childdata = new OwnerListData();
+                childdata.imgURL = imgUrl;
+                childdata.Name = childname;
+                childdata.Number = childindex;
+                GlobalData.getInstance().ownerlist.add(childdata);
+            }
+        }catch (Exception e){
+
+        }
     }
     public void trustAllCertificates() {
         try {
